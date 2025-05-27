@@ -1,5 +1,5 @@
 <div align="center"> <!-- use align as CSS is not allowed on GitHub markdown https://github.com/orgs/community/discussions/22728 -->
-  <img src="https://github.com/user-attachments/assets/49995136-57dc-46f0-a9be-26e6fc166388" alt="" width=100> <!-- Logo -->
+  <img src="https://i.imgur.com/IwMa1rj.png" alt="" width=100> <!-- Logo -->
   <h1><a href="https://brwne.net">brwne</a></h1> <!-- Project Name -->
   <p> <!-- Description -->
     A realtime flavor of git.
