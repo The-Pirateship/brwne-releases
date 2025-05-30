@@ -54,8 +54,6 @@ EOF
 # ----- COMMANDS -----
 
 install() {
-  # install Tauri app
-  _info_msg "Installing brwne app"
   if [[ "$(uname -s)" == Linux ]]; then
     # # Linux install dependencies
     # sudo apt-get install -qq curl libwebkit2gtk-4.1-dev build-essential \
@@ -83,7 +81,7 @@ install() {
         _info_msg "brwne app is already the latest version"
       fi
     fi
-  elif [[ $(uname -s) == darwin ]]; then
+  elif [[ $(uname -s) == Darwin ]]; then
     if ! ls /Applications/brwne.app &>/dev/null; then
       curl -sSL -o /tmp/brwne_aarch64.dmg \
         https://github.com/The-Pirateship/brwne-releases/releases/latest/download/brwne_aarch64.dmg
@@ -96,11 +94,15 @@ install() {
     fi
   fi
 
-  if ! code --list-extensions | grep -q 'pirateship\.brwne'; then
-    code --install-extension pirateship.brwne
-    _success_msg "Successfully installed brwne VS Cde extension"
+  if command -v code &>/dev/null; then
+    if ! code --list-extensions | grep -q 'pirateship\.brwne'; then
+      code --install-extension pirateship.brwne
+      _success_msg "Successfully installed brwne VS Cde extension"
+    else
+      _info_msg "brwne VS Code extension already installed"
+    fi
   else
-    _info_msg "brwne VS Code extension already installed"
+    _warning_msg "VS Code not found in PATH, skipping extension installation"
   fi
 }
 
