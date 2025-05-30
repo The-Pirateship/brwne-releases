@@ -83,6 +83,7 @@ install() {
     fi
   elif [[ $(uname -s) == Darwin ]]; then
     if ! ls /Applications/brwne.app &>/dev/null; then
+      _info_msg "Downloading and installing brwne app"
       curl -sSL -o /tmp/brwne_aarch64.dmg \
         https://github.com/The-Pirateship/brwne-releases/releases/latest/download/brwne_aarch64.dmg
       hdiutil attach /tmp/brwne_aarch64.dmg -nobrowse -quiet
@@ -94,6 +95,15 @@ install() {
     fi
   fi
 
+  # add VS Code to PATH for macOS
+  if [[ $(uname -s) == Darwin ]] && ! command -v code &>/dev/null; then
+    if ls "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" &>/dev/null; then
+      export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+      _info_msg "Added VS Code to PATH"
+    else
+      _warning_msg "VS Code installed, skipping extension installation"
+    fi
+  fi
   if command -v code &>/dev/null; then
     if ! code --list-extensions | grep -q 'pirateship\.brwne'; then
       code --install-extension pirateship.brwne
@@ -101,8 +111,6 @@ install() {
     else
       _info_msg "brwne VS Code extension already installed"
     fi
-  else
-    _warning_msg "VS Code not found in PATH, skipping extension installation"
   fi
 }
 
