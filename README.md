@@ -10,7 +10,7 @@
 
 ## About
 
-<img src="./assets/landing_page.png" alt="" width="750" align="center" style="display: block; margin: auto">
+<div align="center"><img src="./assets/landing_page.png" alt="" width="750"></div>
 
 **brwne** is a CLI & VS Code extension designed to enhance your development workflow. It provides smart integration for projects by offering powerful code snippets, automated formatting, and custom build & debug commands - all within your favourite editor.
 
